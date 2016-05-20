@@ -29,7 +29,7 @@ module SparkPostRails
       end
 
       prepare_substitution_data_from sparkpost_data
-      prepare_metadata_from sparkpost_data
+      prepare_metadata_and_tags_from sparkpost_data
       prepare_description_from sparkpost_data
       prepare_options_from mail, sparkpost_data
       prepare_additional_mail_headers_from mail
@@ -119,9 +119,13 @@ module SparkPostRails
       end
     end
 
-    def prepare_metadata_from sparkpost_data
+    def prepare_metadata_and_tags_from sparkpost_data
       if sparkpost_data[:metadata]
-        @data[:metadata] = sparkpost_data[:metadata]
+        @data[:recipients].map! do |r|
+          r[:metadata] = sparkpost_data[:metadata]
+          r[:tags] = sparkpost_data[:tags]
+          r
+        end
       end
     end
 
