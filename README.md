@@ -191,6 +191,22 @@ mail(to: to_email, subject: "Test", body: "test", sparkpost_data: data)
 
 ### Recipient-Specific Data
 When sending to multiple recipients, you can pass an array of data to complement each recipient. Simply pass an array called `recipients` containing an array of the additional data (e.g. `substitution_data`).
+### Metadata
+You can leverage SparkPost's metadata engine through the gem as well.  To supply metadata, simply add your hash of substitution data
+to your sparkpost_data hash, with the key :metadata.
+
+```
+metadata = { message_type: "Newsletter",
+             reference: "abcd" }
+
+data = { metadata: metadata }
+
+mail(to: to_email, subject: "Test", body: "test", sparkpost_data: data)
+```
+
+### Using SparkPost Templates
+If you would rather leverage SparkPost's powerful templates rather than building ActionMailer views, SparkPostRails can support that as well.  Simply
+add your template id to the sparkpost_data hash:
 
 ```ruby
 recipients = ['recipient1@email.com', 'recipient2@email.com']

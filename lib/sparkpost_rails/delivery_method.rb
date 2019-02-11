@@ -115,6 +115,12 @@ module SparkPostRails
         @data[:substitution_data] = sparkpost_data[:substitution_data]
       end
     end
+    
+    def prepare_metadata_from sparkpost_data
+      if sparkpost_data[:metadata]
+        @data[:metadata] = sparkpost_data[:metadata]
+      end
+    end
 
     def prepare_metadata_from sparkpost_data
       if sparkpost_data[:metadata]
