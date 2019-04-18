@@ -384,7 +384,11 @@ module SparkPostRails
     end
 
     def post_to_api
-      url = "https://api.sparkpost.com/api/v1/transmissions"
+      if SparkPostRails.configuration.region == 'eu'
+        url = "https://api.eu.sparkpost.com/api/v1/transmissions"
+      else
+        url = "https://api.sparkpost.com/api/v1/transmissions"
+      end
 
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)

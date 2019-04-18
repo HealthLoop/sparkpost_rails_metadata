@@ -28,6 +28,7 @@ module SparkPostRails
     attr_accessor :html_content_only
 
     attr_accessor :subaccount
+    attr_accessor :region
 
     def initialize
       set_defaults
@@ -54,6 +55,7 @@ module SparkPostRails
       @html_content_only = false
 
       @subaccount = nil
+      @region = 'us'
     end
   end
 end
